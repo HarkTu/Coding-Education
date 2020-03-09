@@ -1,1 +1,0 @@
-Python Advanced - January 2020
