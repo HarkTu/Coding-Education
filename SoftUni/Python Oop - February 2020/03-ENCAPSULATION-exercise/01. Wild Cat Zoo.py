@@ -68,7 +68,8 @@ class Vet:
 
 
 class Zoo:
-    def __init__(self, name, budget, animal_capacity, workers_capacity):  #in document says 'animlal_capacity'. 1 test fails without correction
+    def __init__(self, name, budget, animal_capacity,
+                 workers_capacity):  # in document says 'animlal_capacity'. 1 test fails without correction
         self.animals = []
         self.workers = []
         self.name = name
@@ -98,6 +99,7 @@ class Zoo:
                 self.workers.remove(worker_x)
                 return f"{worker_name} fired successfully"
         return f"There is no {worker_name} in the zoo"  # on document there was mistaken double space on this line. 1 test fails without correction
+    
     def pay_workers(self):
         sum_salary = sum([x.salary for x in self.workers])
         if sum_salary > self.__budget:
@@ -116,54 +118,41 @@ class Zoo:
         self.__budget += amount
     
     def animals_status(self):
-        status = ''
-        status += f"You have {len(self.animals)} animals\n"
-        status += f"----- {sum([1 for x in self.animals if type(x) == Lion])} Lions:\n"
-        for animal_x in self.animals:
-            if type(animal_x) is Lion:
-                status += f"{str(animal_x)}\n"
-        
-        status += f"----- {sum([1 for x in self.animals if isinstance(x, Tiger)])} Tigers:\n"
-        for animal_x in self.animals:
-            if type(animal_x) is Tiger:
-                status += f"{str(animal_x)}\n"
-        
-        status += f"----- {sum(isinstance(x, Cheetah) for x in self.animals)} Cheetahs:\n"
-        for animal_x in self.animals:
-            if type(animal_x) is Cheetah:
-                status += f"{animal_x.__repr__()}\n"
-        return status
+        result = ''
+        result += f"You have {len(self.animals)} animals\n"
+        result += f"----- {sum([1 for x in self.animals if type(x) == Lion])} Lions:\n"
+        result += '\n'.join([x.__repr__() for x in self.animals if isinstance(x, Lion)])
+        result += f"\n----- {sum([1 for x in self.animals if isinstance(x, Tiger)])} Tigers:\n"
+        result += '\n'.join([x.__repr__() for x in self.animals if isinstance(x, Tiger)])
+        result += f"\n----- {sum(isinstance(x, Cheetah) for x in self.animals)} Cheetahs:\n"
+        result += '\n'.join([x.__repr__() for x in self.animals if isinstance(x, Cheetah)])
+        return result + '\n'
     
     def workers_status(self):
-        status = ''
-        status += f"You have {len(self.workers)} workers\n"
-        status += f"----- {sum([1 for x in self.workers if type(x) == Keeper])} Keepers:\n"
-        for worker_x in self.workers:
-            if type(worker_x) is Keeper:
-                status += f"{str(worker_x)}\n"
-        
-        status += f"----- {sum([1 for x in self.workers if isinstance(x, Caretaker)])} Caretakers:\n"
-        for worker_x in self.workers:
-            if type(worker_x) is Caretaker:
-                status += f"{str(worker_x)}\n"
-        
-        status += f"----- {sum(isinstance(x, Vet) for x in self.workers)} Vets:\n"
-        for worker_x in self.workers:
-            if type(worker_x) is Vet:
-                status += f"{worker_x.__repr__()}\n"  #there is no new line in example solution. 1 test fails without correction
-        return status
-    
+        result = ''
+        result += f"You have {len(self.workers)} workers\n"
+        result += f"----- {sum([1 for x in self.workers if type(x) == Keeper])} Keepers:\n"
+        result += '\n'.join([x.__repr__() for x in self.workers if isinstance(x, Keeper)])
+        result += f"\n----- {sum([1 for x in self.workers if isinstance(x, Caretaker)])} Caretakers:\n"
+        result += '\n'.join([x.__repr__() for x in self.workers if isinstance(x, Caretaker)])
+        result += f"\n----- {sum(isinstance(x, Vet) for x in self.workers)} Vets:\n"
+        result += '\n'.join([x.__repr__() for x in self.workers if isinstance(x, Vet)])
+        return result + '\n'  # there is no new line in example solution. 1 test fails without correction
+
 
 zoo = Zoo("Zootopia", 3000, 5, 8)
 
 # Animals creation
-animals = [Cheetah("Cheeto", "Male", 2), Cheetah("Cheetia", "Female", 1), Lion("Simba", "Male", 4), Tiger("Zuba", "Male", 3), Tiger("Tigeria", "Female", 1), Lion("Nala", "Female", 4)]
+animals = [Cheetah("Cheeto", "Male", 2), Cheetah("Cheetia", "Female", 1), Lion("Simba", "Male", 4),
+           Tiger("Zuba", "Male", 3), Tiger("Tigeria", "Female", 1), Lion("Nala", "Female", 4)]
 
 # Animal prices
 prices = [200, 190, 204, 156, 211, 140]
 
 # Workers creation
-workers = [Keeper("John", 26, 100), Keeper("Adam", 29, 80), Keeper("Anna", 31, 95), Caretaker("Bill", 21, 68), Caretaker("Marie", 32, 105), Caretaker("Stacy", 35, 140), Vet("Peter", 40, 300), Vet("Kasey", 37, 280), Vet("Sam", 29, 220)]
+workers = [Keeper("John", 26, 100), Keeper("Adam", 29, 80), Keeper("Anna", 31, 95), Caretaker("Bill", 21, 68),
+           Caretaker("Marie", 32, 105), Caretaker("Stacy", 35, 140), Vet("Peter", 40, 300), Vet("Kasey", 37, 280),
+           Vet("Sam", 29, 220)]
 
 # Adding all animals
 for i in range(len(animals)):
