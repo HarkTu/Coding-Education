@@ -1,0 +1,34 @@
+class EmailValidator:
+    def __init__(self, min_length, mails, domains):
+        self.min_length = min_length
+        self.mails = mails
+        self.domains = domains
+    
+    def __validate_name(self, name):
+        return len(name) >= self.min_length
+    
+    def __validate_mail(self, mail):
+        return mail in self.mails
+    
+    def __validate_domain(self, domain):
+        return domain in self.domains
+    
+    def validate(self, email):
+        email = email.split('@')
+        if len(email) != 2:
+            return False
+        name = email[0]
+        dot = email[1].index('.')
+        mail, domain = email[1][:dot], email[1][dot + 1:]
+        return EmailValidator.__validate_name(self, name) and \
+               EmailValidator.__validate_mail(self, mail) and \
+               EmailValidator.__validate_domain(self, domain)
+
+
+mails = ["gmail", "softuni"]
+domains = ["com", "bg",'co.uk']
+email_validator = EmailValidator(6, mails, domains)
+print(email_validator.validate("pe77er@gmail.co.uk"))
+print(email_validator.validate("georgios@gmail.net"))
+print(email_validator.validate("stamatito@abv.net"))
+print(email_validator.validate("abv@softuni.bg"))
