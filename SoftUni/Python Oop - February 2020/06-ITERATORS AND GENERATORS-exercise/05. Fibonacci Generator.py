@@ -1,13 +1,11 @@
 def fibonacci():
     first = 1
     second = 0
-    addition = 0
+    collection = 0
     while 1:
-        current = addition
-        addition = first + second
-        first, second = second, addition
-        yield current
-
+        yield collection
+        collection = first + second
+        first, second = second, collection
 
 
 generator = fibonacci()
