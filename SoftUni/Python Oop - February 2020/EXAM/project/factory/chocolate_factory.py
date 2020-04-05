@@ -18,10 +18,10 @@ class ChocolateFactory(Factory):
         self.ingredients[ingredient_type] += quantity
     
     def remove_ingredient(self, ingredient_type: str, quantity: int):
-        if self.ingredients[ingredient_type] < quantity:
-            raise ValueError("Ingredient quantity cannot be less than zero")
-        if ingredient_type not in self.ingredients:
+		if ingredient_type not in self.ingredients:
             raise KeyError("No such product in the factory")
+        if self.ingredients[ingredient_type] < quantity:
+            raise ValueError("Ingredient quantity cannot be less than zero")        
         self.ingredients[ingredient_type] -= quantity
     
     def add_recipe(self, recipe_name: str, recipe: dict):
