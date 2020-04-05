@@ -56,10 +56,10 @@ class TestPaintFactory(unittest.TestCase):
         pfac.add_ingredient('white', 2)
         pfac.remove_ingredient('white', 1)
         self.assertEqual(1, pfac.products['white'])
-		
-	def test_1(self):
+
+    def test_1(self):
         pfac = PaintFactory('pfac', 3)
-        self.assertEqual(pfac.can_add(1),True)
+        self.assertEqual(pfac.can_add(1), True)
 
     def test_2(self):
         pfac = PaintFactory('pfac', 1)
