@@ -20,13 +20,13 @@ class EmailValidator:
         name = email[0]
         dot = email[1].index('.')
         mail, domain = email[1][:dot], email[1][dot + 1:]
-        return EmailValidator.__validate_name(self, name) and \
-               EmailValidator.__validate_mail(self, mail) and \
-               EmailValidator.__validate_domain(self, domain)
+        return self.__validate_name(name) and \
+            self.__validate_mail(mail) and \
+            self.__validate_domain(domain)
 
 
 mails = ["gmail", "softuni"]
-domains = ["com", "bg",'co.uk']
+domains = ["com", "bg", 'co.uk']
 email_validator = EmailValidator(6, mails, domains)
 print(email_validator.validate("pe77er@gmail.co.uk"))
 print(email_validator.validate("georgios@gmail.net"))

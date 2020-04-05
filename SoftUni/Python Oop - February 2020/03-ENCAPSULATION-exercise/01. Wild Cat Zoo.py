@@ -120,7 +120,7 @@ class Zoo:
         result = ''
         result += f"You have {len(self.animals)} animals\n"
         result += f"----- {sum([1 for x in self.animals if type(x) == Lion])} Lions:\n"
-        result += '\n'.join([x.__repr__() for x in self.animals if isinstance(x, Lion)])
+        result += '\n'.join([str(x) for x in self.animals if isinstance(x, Lion)])
         result += f"\n----- {sum([1 for x in self.animals if isinstance(x, Tiger)])} Tigers:\n"
         result += '\n'.join([x.__repr__() for x in self.animals if isinstance(x, Tiger)])
         result += f"\n----- {sum(isinstance(x, Cheetah) for x in self.animals)} Cheetahs:\n"

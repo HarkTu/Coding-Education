@@ -21,7 +21,7 @@ def solution():
     
     # TODO: Implement
     
-    return (take, halves, integers)
+    return take, halves, integers
 
 
 taken = solution()[0]

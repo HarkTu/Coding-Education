@@ -3,10 +3,14 @@ class Time:
     max_minutes = 60
     max_seconds = 60
     
+    
     def __init__(self, hours: int or float, minutes: int or float, seconds: int or float):
         self.seconds = seconds
         self.minutes = minutes
         self.hours = hours
+        if self.hours>24:
+            self.hours=0
+            
     
     def set_time(self, hours, minutes, seconds):
         self.seconds = seconds
@@ -48,3 +52,7 @@ print(time.get_time())
 
 time.set_time(49, 69, 61)
 print(time.get_time())
+
+time = Time(-1, 30, 60)
+print(time.get_time())
+
