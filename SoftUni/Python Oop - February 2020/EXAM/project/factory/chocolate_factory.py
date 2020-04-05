@@ -18,10 +18,10 @@ class ChocolateFactory(Factory):
         self.ingredients[ingredient_type] += quantity
     
     def remove_ingredient(self, ingredient_type: str, quantity: int):
-        if self.ingredients[ingredient_type] < quantity:
-            raise ValueError("Ingredient quantity cannot be less than zero")
         if ingredient_type not in self.ingredients:
             raise KeyError("No such product in the factory")
+        if self.ingredients[ingredient_type] < quantity:
+            raise ValueError("Ingredient quantity cannot be less than zero")
         self.ingredients[ingredient_type] -= quantity
     
     def add_recipe(self, recipe_name: str, recipe: dict):
@@ -30,18 +30,20 @@ class ChocolateFactory(Factory):
     def make_chocolate(self, recipe_name: str):
         if recipe_name not in self.recipes:
             raise TypeError("No such recipe")
-        if recipe_name not in self.products:
-            self.products[recipe_name] = 0
-        self.products[recipe_name] += 1
         for key, value in self.recipes[recipe_name].items():
-            self.ingredients[key] -= value
-
-
+            self.remove_ingredient(key, value)
+        else:
+            if recipe_name not in self.products:
+                self.products[recipe_name] = 0
+            self.products[recipe_name] += 1
 
 # pfac = ChocolateFactory('pfac', 6)
 # pfac.add_ingredient("milk chocolate", 2)
 # pfac.add_ingredient('sugar', 3)
+# pfac.remove_ingredient('sugar', 4)
+# pfac.remove_ingredient('suga', 4)
 # pfac.add_recipe('choco',{'milk chocolate':1,'sugar':1})
 # pfac.make_chocolate('choco')
 # #
 # print(pfac.ingredients)
+# print(pfac.products)

@@ -29,4 +29,5 @@ class PaintFactory(Factory):
 #
 # pfac = PaintFactory('pfac', 3)
 # pfac.add_ingredient('white', 2)
-# pfac.remove_ingredient('whit', 3)
+# pfac.remove_ingredient('white', 3)
+#
