@@ -32,7 +32,7 @@ for direction, step in directions.items():
         temp_steps.append([new_row, new_col])
         new_row += step[0]
         new_col += step[1]
-    if sum_collected < temp_collected or (temp_collected == sum_collected and len(temp_steps) > len(egg_indices)):
+    if sum_collected < temp_collected or (temp_collected == sum_collected and len(temp_steps) > len(egg_indices)): #(***)
         sum_collected = temp_collected
         egg_indices = temp_steps
         best_direction = direction
