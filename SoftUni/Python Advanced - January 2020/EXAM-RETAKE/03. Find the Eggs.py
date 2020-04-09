@@ -4,12 +4,11 @@ from collections import deque
 def find_strongest_eggs(sequence, sub):
     found = []
     sublists = []
-    sublist = deque()
     for i in range(sub):
+        sublist = deque()
         for x in range(i, len(sequence), sub):
             sublist.append(sequence[x])
         sublists.append(sublist)
-        sublist = deque()
     for x in sublists:
         mid_ind = len(x) // 2
         if x[mid_ind - 1] < x[mid_ind + 1] < x[mid_ind]:
