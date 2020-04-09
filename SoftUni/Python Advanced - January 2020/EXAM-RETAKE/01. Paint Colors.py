@@ -18,14 +18,14 @@ while array:
         else:
             substring2 = right[:-1]
             substring = left[:-1]
-            mid_ind = int(len(array) / 2)
+            mid_ind = len(array) // 2
             if substring2:
                 array.insert(mid_ind, substring2)
             if substring:
                 array.insert(mid_ind, substring)
     elif left in colors:
         found.append(left)
-        
+
 for x in found:
     if x == 'orange':
         if 'red' not in found or 'yellow' not in found:
