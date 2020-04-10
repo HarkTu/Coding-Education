@@ -6,7 +6,6 @@ colors = ['yellow', 'blue', 'red', 'orange', 'purple', 'green']
 found = []
 while array:
     left = array.popleft()
-    right = ''
     if array:
         right = array.pop()
         substring = f"{left}{right}"
