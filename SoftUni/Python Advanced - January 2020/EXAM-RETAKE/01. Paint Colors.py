@@ -25,15 +25,13 @@ while array:
     elif left in colors:
         found.append(left)
 
-for x in found:
-    if x == 'orange':
-        if 'red' not in found or 'yellow' not in found:
-            found.remove(x)
-    if x == 'purple':
-        if 'red' not in found or 'blue' not in found:
-            found.remove(x)
-    if x == 'green':
-        if 'blue' not in found or 'yellow' not in found:
-            found.remove(x)
+mid_colors = {
+    'orange': ['red', 'yellow'],
+    'purple': ['red', 'blue'],
+    'green': ['blue', 'yellow']
+}
+for mid, parents in mid_colors.items():
+    if mid in found and (parents[0] not in found or parents[1] not in found):
+        found.remove(mid)
 
 print(found)
