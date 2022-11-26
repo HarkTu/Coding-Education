@@ -1,0 +1,224 @@
+@startuml
+class functionalities.Club {
+- int[] tables
++ int[] getTables()
++ void setTables(int[])
++ void getTableNumber()
+}
+class functionalities.Club.Customer {
+- String title
+- int age
++ boolean isEligibleToDrink(int)
++ String getTitle()
++ int getAge()
+}
+class functionalities.Club.Order {
+~ Orderable drink
+~ BigDecimal price
+- List<String> orders
+}
+class exceptions.NegativeQuantityException {
++ String getMessage()
+}
+class utilities.FinanceUtils {
++ {static} void printDailyReport(String)
+}
+class inventory.Cocktail {
+- String name
+- BigDecimal price
+- int milliliters
++ Map<ABVDrinks,Integer> aDrinks
++ Map<Fizzies,Integer> fizzies
++ Map<Ingredients,Integer> ingredients
++ String getName()
++ BigDecimal getPrice()
++ int getMilliliters()
+}
+class employee.Bartender {
+}
+enum inventory.ABVDrinks {
++  WHISKEY
++  VODKA
++  RUM
++  BOURBON
++  BEER
++  GINGER_BEER
++  TEQUILA
++  VERMOUTH
++  CAMPARI
++  GIN
++  COGNAC
++  LIQUEUR
++  COINTREAU
++  WHITE_RUM
++  RED_WINE
++  WHITE_WINE
++  CHAMPAGNE
+~ String name
+~ int milliliters
++ String getName()
++ int getMilliliters()
+}
+class utilities.StockUtils {
++ {static} void addStock(WareHouse,CashRegister,Object,BigDecimal)
+}
+abstract class employee.Employee {
+- {static} BigDecimal minWage
+- String name
+- EmployeeType employeeType
+- BigDecimal wage
+- long egn
++ String getName()
++ void setEmployeeType(EmployeeType)
++ BigDecimal getWage()
++ void setWage(int)
++ void setEgn(long)
++ String toString()
+}
+enum inventory.Fizzies {
++  SPRITE
++  COLA
++  FANTA
++  SODA
++  LEMON_JUICE
++  ORANGE_JUICE
++  APPLE_JUICE
++  CRANBERRY_JUICE
++  ZERO_BEER
+~ String name
+~ int milliliters
++ String getName()
++ int getMilliliters()
+}
+class employee.Security {
+}
+enum employee.EmployeeType {
++  WAITER
++  BARMAN
++  SECURITY
+~ int percentWage
+}
+class accounting.CashRegister {
+- BigDecimal startMoney
+- BigDecimal balance
+- BigDecimal dailyWage
++ BigDecimal getStartMoney()
++ BigDecimal getProfit()
++ BigDecimal getTax()
++ void setDailyWage(Waiter,int,Bartender,Security)
++ BigDecimal getDailyWage()
++ BigDecimal getIncome()
++ BigDecimal getBalance()
++ void addMoney(BigDecimal)
++ void removeMoney(BigDecimal)
++ String toString()
+}
+class employee.Waiter {
+- BigDecimal tips
+- boolean isBusy
+- List<String> orders
++ boolean isBusy()
++ void setBusy(boolean)
++ BigDecimal getTips()
++ void addTips(BigDecimal)
++ String toString()
+}
+class Main {
++ {static} void main(String[])
+}
+class utilities.ColorUtils {
++ {static} String COLOUR_RESET
++ {static} String COLOUR_BLACK
++ {static} String COLOUR_RED
++ {static} String COLOUR_GREEN
++ {static} String COLOUR_YELLOW
++ {static} String COLOUR_BLUE
++ {static} String COLOUR_PURPLE
++ {static} String COLOUR_CYAN
++ {static} String COLOUR_WHITE
++ {static} String TEXT_BRIGHT_BLACK
++ {static} String TEXT_BRIGHT_RED
++ {static} String TEXT_BRIGHT_GREEN
++ {static} String TEXT_BRIGHT_YELLOW
++ {static} String TEXT_BRIGHT_BLUE
++ {static} String TEXT_BRIGHT_PURPLE
++ {static} String TEXT_BRIGHT_CYAN
++ {static} String TEXT_BRIGHT_WHITE
++ {static} String BACKGROUND_BLACK
++ {static} String BACKGROUND_RED
++ {static} String BACKGROUND_GREEN
++ {static} String BACKGROUND_YELLOW
++ {static} String BACKGROUND_BLUE
++ {static} String BACKGROUND_PURPLE
++ {static} String BACKGROUND_CYAN
++ {static} String BACKGROUND_WHITE
++ {static} String TEXT_BRIGHT_BG_BLACK
++ {static} String TEXT_BRIGHT_BG_RED
++ {static} String TEXT_BRIGHT_BG_GREEN
++ {static} String TEXT_BRIGHT_BG_YELLOW
++ {static} String TEXT_BRIGHT_BG_BLUE
++ {static} String TEXT_BRIGHT_BG_PURPLE
++ {static} String TEXT_BRIGHT_BG_CYAN
++ {static} String TEXT_BRIGHT_BG_WHITE
+}
+interface inventory.Orderable {
+~ String getName()
+~ int getMilliliters()
+}
+enum inventory.Ingredients {
++  SALT
++  SUGAR
++  MILK
++  ICE
++  LIME_JUICE
++  OLIVE
++  MINT_LEAVES
++  BITTERS
++  FRUITS
++  COFFEE
++  TOMATO_JUICE
+~ int milligrams
++ int getMilligrams()
+}
+class inventory.WareHouse {
++ Map<ABVDrinks,Integer> alcohols
++ Map<Fizzies,Integer> fizzies
++ Map<Ingredients,Integer> ingredients
++ void increaseStock(Object,int)
++ void decreaseStock(Object,WareHouse,CashRegister,int)
++ void printWareHouseStock()
+}
+class utilities.Team7 {
++ {static} void greetings()
+}
+class inventory.Menu {
++ {static} LinkedHashMap<ABVDrinks,BigDecimal> aDrinks
++ {static} LinkedHashMap<Fizzies,BigDecimal> fizzies
++ {static} List<Cocktail> cocktails
++ {static} List<List<Integer>> statistics
++ {static} LinkedHashMap<ABVDrinks,BigDecimal> fillADrinks()
++ {static} LinkedHashMap<Fizzies,BigDecimal> fillFizzies()
++ {static} void printMenu()
+}
+class functionalities.Starter {
+~ {static} Random random
+~ {static} ArrayList<String> takenEgnNumbers
++ {static} void start()
++ {static} void removeWorstSeller()
++ {static} void sortedStatistics()
+- {static} void addOrderToStatistics(int,int)
+- {static} Orderable generateDrink(int,int)
+- {static} int generateOrderIndex(int)
+~ {static} long generateEGN()
++ {static} int randBetween(int,int)
+}
+
+
+functionalities.Club +.. functionalities.Club.Customer
+functionalities.Club +.. functionalities.Club.Order
+exceptions.Exception <|-- exceptions.NegativeQuantityException
+inventory.Orderable <|.. inventory.Cocktail
+employee.Employee <|-- employee.Bartender
+employee.Employee <|-- employee.Security
+employee.Employee <|-- employee.Waiter
+@enduml
